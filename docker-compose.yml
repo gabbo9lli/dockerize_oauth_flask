@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./example-oauth2-server
+    command: gunicorn --bind 0.0.0.0:5000 --log-level=debug --access-logfile '-' --error-logfile '-' --capture-output --enable-stdio-inheritance app:app
+    ports:
+      - 5000:5000
+
+  # client:
+  #   build: ./services/client
+  #   ports:
+  #     - 3000:3000
+  #   env_file:
+  #     - ./services/client/config/.env
